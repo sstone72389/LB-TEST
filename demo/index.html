@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="../src/css/lightslider.css" />
     <link rel="stylesheet" href="../src/css/lightgallery.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
         ul {
             list-style: none outside none;
@@ -35,8 +36,20 @@
         }
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Include lightSlider -->
+
     <script src="../src/js/lightslider.js"></script>
+
+    <!-- Include lightGallery -->
     <script src="../src/js/lightgallery.js"></script>
+
+    <!-- Include lg-zoom -->
+    <script src="js/lg-zoom.min.js"></script>
+
+    <!-- Include other lightgallery plugins (Optional) -->
+    <script src="js/lg-thumbnail.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $("#content-slider").lightSlider({
@@ -44,20 +57,31 @@
                 keyPress: true
             });
             $('#image-gallery').lightSlider({
+                // set gallery to false for small devices
                 gallery: true,
                 item: 1,
                 thumbItem: 9,
                 slideMargin: 0,
                 speed: 500,
                 auto: false,
-                loop: false,
+                loop: true,
+                // prevHtml: '<i class="fa fa-angle-left fa-4x"></i>',
+                // nextHtml: '<i class="fa fa-angle-right fa-4x"></i>',
                 enableTouch: true,
                 enableDrag: false,
                 freeMove: true,
                 swipeThreshold: 40,
-                onSliderLoad: function() {
-                    $('#image-gallery').lightGallery();
-                },
+                // onSliderLoad: function() {
+                //     $('#image-gallery').lightGallery()
+                // }
+                onSliderLoad: function(el) {
+                    el.lightGallery({
+                        selector: '#imageGallery .lslide'
+                    });
+                }
+            });
+            $('#image-gallery').lightGallery({
+                zoom: 'true'
             });
         });
     </script>
@@ -68,18 +92,21 @@
         <div class="item">
             <div class="clearfix" style="max-width:474px;">
                 <ul id="image-gallery" class="gallery list-unstyled">
-                    <li data-thumb="img/thumb/cS-1.jpg" data-src="img/cS-1.jpg">
-                        <img src="img/cS-1.jpg" />
+                    <li data-thumb="img/thumb/cS-6.jpg" data-src="img/cS-6.jpg">
+                        <img src="img/cS-6.jpg" />
                     </li>
-                    <li data-thumb="img/thumb/cS-2.jpg" data-src="img/cS-2.jpg">
-                        <img src="img/cS-2.jpg" />
+                    <li data-thumb="img/thumb/cS-7.jpg" data-src="img/cS-7.jpg">
+                        <img src="img/cS-7.jpg" />
                     </li>
-                    <li data-thumb="img/thumb/cS-3.jpg" data-src="img/cS-3.jpg">
-                        <img src="img/cS-3.jpg" />
+                    <li data-thumb="img/thumb/cS-8.jpg" data-src="img/cS-8.jpg">
+                        <img src="img/cS-8.jpg" />
                     </li>
-                    <li data-thumb="img/thumb/cS-4.jpg" data-src="img/cS-4.jpg">
-                        <img src="img/cS-4.jpg" />
+                    <li data-thumb="img/thumb/cS-9.jpg" data-src="img/cS-9.jpg">
+                        <img src="img/cS-9.jpg" />
                     </li>
+                    <!-- <li data-thumb="img/thumb/cS-17.jpg">
+                        <iframe width="474" height="338" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/z0wRT8xUNBI?wmode=opaque&enablejsapi=1" class="ls-youtube"></iframe>
+                    </li> -->
                 </ul>
             </div>
         </div>
